@@ -17,8 +17,7 @@ $(document).ready(function(){
   if ( "{{arg['code']}}" != "None" && "{{arg['code']}}" != "" ) {
     tmp = "{{arg['code']}}";
     arr = tmp.split(',')
-    tmp = "https://www.seezntv.com/vodDetail?content_id=-" + arr[0] + "&menu_id=" + arr[1] + "&series_id=";
-
+    tmp = "https://tv.kakao.com/channel/" + arr[0] + "/cliplink/" + arr[1] ;
     $("#url").val(tmp);
     $("#analyze_btn").click();
   } else {

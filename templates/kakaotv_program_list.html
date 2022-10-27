@@ -86,7 +86,7 @@ $('body').on('click', '#request_btn', (e) => {
   e.preventDefault();
   let prog_id = e.target.dataset.code;   
   if (prog_id) {
-      window.location = `/seezn/program/select?code=${prog_id}`;
+      window.location = `/kakaotv/program/select?code=${prog_id}`;
   }
 });
 
@@ -122,7 +122,7 @@ const make_list = (data) => {
     str += j_col(6, `${data[i].info.channel_name} | ${data[i].info.title}<br>
                      ${data[i].info.filename}<br><br>
                      ${j_button('request_btn', '프로그램 검색', 
-                      {'code':data[i].info.clip_id})}
+                      {'code':data[i].info.channel_id + ',' + data[i].info.clip_id})}
                      ${j_button('remove_btn', '항목 삭제', 
                       {'db_id':data[i].id})}
                      `);
