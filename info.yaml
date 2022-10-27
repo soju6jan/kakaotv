@@ -1,0 +1,13 @@
+title: "카카오TV 오리지널"
+version: "1.0.0"
+package_name: "kakaotv"
+developer: "soju6jan"
+description: "카카오TV 오리지널"
+home: "https://github.com/soju6jan/kakaotv"
+more: 
+
+require_plugin: 
+  - "https://github.com/soju6jan/sjva"
+  - "https://github.com/soju6jan/wv_tool"
+
+

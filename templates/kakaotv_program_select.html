@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id='program_list'>
+{{ macros.setting_input_text_and_buttons('url', 'URL or Code', [['analyze_btn', '분석'], ['globalOpenBtn', '시즌', [['url','https://www.seezntv.com/']] ]], value=arg['program_recent_code'], desc='URL') }}
+</form>
+<form id="program_auto_form">
+<div id='detail'></div>
+<div id="more"></div>
+<form>
+ 
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+  if ( "{{arg['code']}}" != "None" && "{{arg['code']}}" != "" ) {
+    tmp = "{{arg['code']}}";
+    arr = tmp.split(',')
+    tmp = "https://www.seezntv.com/vodDetail?content_id=-" + arr[0] + "&menu_id=" + arr[1] + "&series_id=";
+
+    $("#url").val(tmp);
+    $("#analyze_btn").click();
+  } else {
+    globalSendCommand('previous_analyze', null, null, null, null, function(ret){
+      if (ret.data != null) {
+        make_program_page(ret.data);
+      }
+    });
+  }
+});
+
+
+$("body").on('click', '#analyze_btn', function(e) {
+  e.preventDefault();
+  if ($("#url").val() == "") {
+    $.notify('<strong>URL이나 Code를 입력하세요.</strong>', {
+      type: 'warning'
+    });
+    return;
+  }
+  globalSendCommand('analyze', $("#url").val(), null, null, null, function(ret){
+    make_program_page(ret);
+
+  });
+});
+
+
+function make_program_page(ret) {
+  console.log(ret)
+  current_data = ret
+  str = '';
+  data = ret;
+  tmp = '<div class="form-inline">'
+  tmp += j_button('check_download_btn', '선택 다운로드 추가');
+  tmp += j_button('all_check_on_btn', '전체 선택');
+  tmp += j_button('all_check_off_btn', '전체 해제');
+  tmp += '</div>';
+  str += tmp;
+
+  str += '<hr>';
+  for (i in data) {
+    console.log(data[i])
+    str += j_row_start();
+    tmp = '<img src="' + data[i].img + '" class="img-fluid">';
+    str += j_col(3, tmp);
+    tmp = '<strong>' + ret.channel_name +' | ' + data[i].title + '</strong><br>';
+    tmp += "회차 : " + data[i].no + ' | ' + data[i].pay  + '<br>';
+    if (data[i].pay == '무료') {
+      tmp += "파일명 : " + data[i].filename + '<br><p></p>';
+    } else {
+      tmp += '<br><p></p>';
+    }
+
+    tmp += '<div class="form-inline">';
+    if (data[i].pay == '무료') {
+      tmp += '<input id="checkbox|'+data[i].clip_id+'" name="checkbox|'+data[i].clip_id+'" type="checkbox" checked data-toggle="toggle" data-on="선 택" data-off="-" data-onstyle="primary" data-offstyle="danger" data-size="small">&nbsp;&nbsp;&nbsp;&nbsp;';
+      tmp += j_button('insert_download_btn', '다운로드 추가', {'code':data[i].clip_id});
+      tmp += j_button('force_insert_download_btn', '다운로드 추가 (DB무시)', {'code':data[i].clip_id});
+    } 
+    tmp += '</div>';
+    str += j_col(9, tmp)
+    str += j_row_end();
+    if (i != data.length -1) str += j_hr(0);
+  }
+  $("#detail").html(str);
+  $('input[id^="checkbox|"]').bootstrapToggle()
+}
+
+$("body").on('click', '#all_check_on_btn', function(e){
+  e.preventDefault();
+  $('input[id^="checkbox|"]').bootstrapToggle('on');
+});
+
+$("body").on('click', '#all_check_off_btn', function(e){
+  e.preventDefault();
+  $('input[id^="checkbox|"]').bootstrapToggle('off');
+});
+
+$("body").on('click', '#insert_download_btn', function(e){
+  e.preventDefault();
+  code = $(this).data('code');
+  globalSendCommand("download_program", code, false);
+});
+
+
+$("body").on('click', '#force_insert_download_btn', function(e){
+  e.preventDefault();
+  code = $(this).data('code');
+  globalSendCommand("download_program", code, true);
+});
+
+
+$("body").on('click', '#check_download_btn', function(e){
+  e.preventDefault();
+  all = $('input[id^="checkbox|"]');
+  str = "";
+  for (i in all) {
+    if (all[i].checked){
+      code = all[i].id.split('|')[1];
+      str += code+",";
+    }
+  }
+  if (str == "") {
+    notify('선택하세요.', 'warning');
+    return;
+  }
+  globalSendCommand("download_program_check", str);
+});
+
+
+
+</script>    
+{% endblock %}
