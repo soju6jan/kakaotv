@@ -64,7 +64,7 @@ function make_program_page(ret) {
     str += j_row_start();
     tmp = '<img src="' + data[i].img + '" class="img-fluid">';
     str += j_col(3, tmp);
-    tmp = '<strong>' + ret.channel_name +' | ' + data[i].title + '</strong><br>';
+    tmp = '<strong>' + data[i].channel_name +' | ' + data[i].title + '</strong><br>';
     tmp += "회차 : " + data[i].no + ' | ' + data[i].pay  + '<br>';
     if (data[i].pay == '무료') {
       tmp += "파일명 : " + data[i].filename + '<br><p></p>';
