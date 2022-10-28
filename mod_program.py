@@ -198,7 +198,7 @@ class ModuleProgram(PluginModuleBase):
                 return
             is_last = True
 
-            if args['status'] == "READY":
+            if args['status'] in ["READY", "SEGMENT_FAIL"]:
                 is_last = False
             elif args['status'] == "EXIST_OUTPUT_FILEPATH":
                 pass
