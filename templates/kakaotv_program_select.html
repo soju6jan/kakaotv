@@ -21,7 +21,7 @@ $(document).ready(function(){
     $("#url").val(tmp);
     $("#analyze_btn").click();
   } else {
-    globalSendCommand('previous_analyze', null, null, null, null, function(ret){
+    globalSendCommand('previous_analyze', null, null, null, function(ret){
       if (ret.data != null) {
         make_program_page(ret.data);
       }
@@ -38,7 +38,7 @@ $("body").on('click', '#analyze_btn', function(e) {
     });
     return;
   }
-  globalSendCommand('analyze', $("#url").val(), null, null, null, function(ret){
+  globalSendCommand('analyze', $("#url").val(), null, null, function(ret){
     make_program_page(ret);
 
   });

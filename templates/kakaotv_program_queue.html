@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 
 function refresh() {
-  globalSendCommand('queue_list', null, null, null, null, function(data) {
+  globalSendCommand('queue_list', null, null, null, function(data) {
     current_data = data;
     $("#list_div").html('');
     console.log(data)
@@ -84,14 +84,14 @@ $("body").on('click', '#program_cancel_btn', function(e){
 
 $("body").on('click', '#reset_btn', function(e){
   e.preventDefault();
-  globalSendCommand('queue_command', 'reset', null, null, null, function(ret){
+  globalSendCommand('queue_command', 'reset', null, null, function(ret){
     refresh();
   });
 });
 
 $("body").on('click', '#delete_completed_btn', function(e){
   e.preventDefault();
-  globalSendCommand('queue_command', 'delete_completed', null, null, null, function(ret){
+  globalSendCommand('queue_command', 'delete_completed', null, null, function(ret){
     refresh();
   });
 });
