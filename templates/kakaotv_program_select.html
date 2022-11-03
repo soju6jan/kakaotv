@@ -2,7 +2,7 @@
 {% block content %}
 
 <form id='program_list'>
-{{ macros.setting_input_text_and_buttons('url', 'URL or Code', [['analyze_btn', '분석'], ['globalOpenBtn', '시즌', [['url','https://www.seezntv.com/']] ]], value=arg['program_recent_code'], desc='URL') }}
+{{ macros.setting_input_text_and_buttons('url', 'URL or Code', [['analyze_btn', '분석'], ['globalOpenBtn', '카카오TV', [['url','https://tv.kakao.com/top']] ]], value=arg['program_recent_code'], desc='URL') }}
 </form>
 <form id="program_auto_form">
 <div id='detail'></div>
