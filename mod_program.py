@@ -1,5 +1,5 @@
 import wv_tool
-from support.site import SupportKakaotv
+from support_site import SupportKakaotv
 
 from .setup import *
 
@@ -18,7 +18,7 @@ class ModuleProgram(PluginModuleBase):
             f"{P.package_name}_{self.name}_last_list_option": "1",
             f"{self.name}_db_version": "1",
             f"{self.name}_recent_code": "",
-            f"{self.name}_save_path": "{PATH_DATA}/download",
+            f"{self.name}_save_path": "{PATH_DATA}"+os.sep+"download",
             f"{self.name}_make_program_folder": "False",
             f"{self.name}_max_download_count": "2",
             f"{self.name}_quality": "1080p",

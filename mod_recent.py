@@ -1,4 +1,4 @@
-from support.site import SupportKakaotv
+from support_site import SupportKakaotv
 
 from .mod_program import ModelKakaotvProgram
 from .setup import *

@@ -8,6 +8,7 @@ more:
 
 require_plugin: 
   - "https://github.com/soju6jan/sjva"
+  - "https://github.com/flaskfarm/support_site"
   - "https://github.com/soju6jan/wv_tool"
 
 
