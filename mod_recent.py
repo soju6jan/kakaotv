@@ -27,12 +27,7 @@ class ModuleRecent(PluginModuleBase):
         return render_template(f'{P.package_name}_{name}_{page_name}.html', arg=arg)
 
 
-    def process_command(self, command, arg1, arg2, arg3, req):
-        pass
-
-
     def scheduler_function(self):
-        P.logger.error("scheduler_function")
         item_list = SupportKakaotv.get_recent_channel()
 
         for item in item_list:
