@@ -180,8 +180,8 @@ class ModuleProgram(PluginModuleBase):
                 logger.error('Exception:%s', e)
                 logger.error(traceback.format_exc())
 
-    def reset_db(self):
-        return ModelKakaotvProgram.delete_all()
+    def db_delete(self, day):
+        return ModelKakaotvProgram.delete_all(day=day)
 
     def retry_download_failed(self):
         failed_list = ModelKakaotvProgram.get_failed()

@@ -4,7 +4,7 @@
 {{ macros.m_button_group([['globalSettingSaveBtn', '설정 저장']])}}
 {{ macros.m_row_start('5') }}
 {{ macros.m_row_end() }}
-
+{{ macros.m_hr() }}
 <form id="setting">
   {{ macros.setting_input_text('program_save_path', '저장 폴더', value=arg['program_save_path'], col='9', desc=['절대경로 혹은 {PATH_DATA}/download 와 같은 데이터 폴더 기준 상대 경로']) }}
   {{ macros.setting_checkbox('program_make_program_folder', '방송명 폴더 생성', value=arg['program_make_program_folder'], desc='방송 프로그램 이름으로 폴더를 생성하고 다운로드합니다.') }}
