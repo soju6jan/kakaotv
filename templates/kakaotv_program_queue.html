@@ -26,10 +26,8 @@ $(document).ready(function(){
   socket.on('start', function(data){});
 
   socket.on('status', function(data){
-    console.log(data);
     str = make_item(data);
     $('#item_' + data.id).html(str);
-
   });
   refresh();
 });
@@ -39,7 +37,6 @@ function refresh() {
   globalSendCommand('queue_list', null, null, null, function(data) {
     current_data = data;
     $("#list_div").html('');
-    console.log(data)
     if (data.length == 0) {
       str = "<tr><td colspan='10'><h4>작업이 없습니다.</h4><td><tr>";
     } else {
@@ -58,7 +55,6 @@ function refresh() {
 
 function make_item(data) {
   str = '';
-  console.log(data);
   str += j_row_start();
   str += j_col(1, data.id);
   str += j_col(2, data.created_time);

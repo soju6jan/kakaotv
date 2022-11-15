@@ -46,7 +46,6 @@ $("body").on('click', '#analyze_btn', function(e) {
 
 
 function make_program_page(ret) {
-  console.log(ret)
   current_data = ret
   str = '';
   data = ret;
@@ -59,7 +58,6 @@ function make_program_page(ret) {
 
   str += '<hr>';
   for (i in data) {
-    console.log(data[i])
     str += j_row_start();
     tmp = '<img src="' + data[i].img + '" class="img-fluid">';
     str += j_col(3, tmp);
